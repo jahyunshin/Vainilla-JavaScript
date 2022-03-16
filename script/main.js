@@ -26,3 +26,40 @@ console.log(`typeof: ${typeof symbol210315_1} ${symbol210315_1.description} === 
 const symbol210315_3 = Symbol.for('test');
 const symbol210315_4 = Symbol.for('test');
 console.log(symbol210315_3 === symbol210315_4);
+
+//String literals
+console.log(`1 + 2 = ${1 + 2}`);
+
+//equality check
+console.log(0 == false);//true
+console.log(0 === false);//false
+console.log('' == false);//true
+console.log('' === false);//false
+console.log(null == undefined);//true
+console.log(null === undefined);//false
+
+//Function hoisted
+testFunction();
+function testFunction () {
+    console.log('testFunction');
+}
+//Default Parameters
+const showMessage = function(param1, param2 = 'default', param3 = 'default2') {
+    console.log(`${param1} ${param2} ${param3}`);
+}
+showMessage('test1');
+
+//Rest Prameters
+const restPram = function(...params) {
+    params.forEach(param => console.log(param));
+}
+restPram('감자에 ', '싹이 나서 ', '잎이 나서');
+
+//Arrow Function
+const arrowFunction = (param) => console.log(param);
+arrowFunction('testArrow');
+
+//즉시 실행 함수 표현(IIFE, Immediately Invoked Function Expression)
+(function IIFEFunction() {
+    console.log('IIFEFunction');
+})();
