@@ -1,5 +1,7 @@
 'use strict';
 
+//https://developer.mozilla.org/ko/docs/Web/JavaScript
+
 const hello = 'hello';
 const helloHello = `hello ${hello}`;
 console.log(helloHello);
@@ -63,3 +65,57 @@ arrowFunction('testArrow');
 (function IIFEFunction() {
     console.log('IIFEFunction');
 })();
+
+new Person('test', -1).speak();
+
+console.log(new Person('test', -1)._age);
+
+const person = new Person('test', 11);
+person._age = 112
+console.log(person._age);
+console.log(person.age);
+
+const triangle = new Triangle(30, 50, 'red');
+console.log(triangle.getArea());
+
+console.log(triangle instanceof Rectangle);
+console.log(triangle instanceof Triangle);
+console.log(triangle instanceof Shape);
+console.log(triangle instanceof Object);
+
+//Object Control
+const testFunction220316 = function(param1, param2, param3 = 'default') {
+    return {first: param1, second: param2, third: param3};
+}
+const testObject220316 = testFunction220316(1, 2, 33);
+delete testObject220316.second;
+delete testObject220316['third'];
+console.log(testObject220316);
+
+//Property value shorthand
+function defaultObject220316_001(param1, param2 = 'default') {
+    return {
+        param1,
+        param2,
+    }
+}
+const testObject220316_002 = new defaultObject220316_001(11, 22);
+console.log(testObject220316_002);
+
+//Constructor function
+function defaultObject220316_003(param1, param2, param3 = 'default') {
+    //this = {};
+    this.param1 = param1;
+    this.param2 = param2;
+    this.param3 = param3;
+    //return this;
+}
+const testObject220316_003 = new defaultObject220316_003(111, 222, 333);
+console.log(testObject220316_003.param3);
+console.log('param2' in testObject220316_003);
+
+// Assign
+const testObject220316_004 = Object.assign({}, testObject220316_002, testObject220316_003);
+console.log(testObject220316_004);
+const testObject220316_005 = Object.assign(testObject220316_003, testObject220316_002);
+console.log(testObject220316_005);
