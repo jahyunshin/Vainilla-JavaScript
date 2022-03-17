@@ -66,14 +66,11 @@ arrowFunction('testArrow');
     console.log('IIFEFunction');
 })();
 
-new Person('test', -1).speak();
-
-console.log(new Person('test', -1)._age);
-
-const person = new Person('test', 11);
-person._age = 112
-console.log(person._age);
-console.log(person.age);
+//Class
+const studentAkadow = new Students('akadow', 40, true, 99);
+studentAkadow.name = '';
+studentAkadow.married = false;
+console.log(studentAkadow);
 
 const triangle = new Triangle(30, 50, 'red');
 console.log(triangle.getArea());
@@ -119,3 +116,36 @@ const testObject220316_004 = Object.assign({}, testObject220316_002, testObject2
 console.log(testObject220316_004);
 const testObject220316_005 = Object.assign(testObject220316_003, testObject220316_002);
 console.log(testObject220316_005);
+
+//Array, forEach
+const fruits220317_001 = new Array('banana', 'apple', 'peach');
+fruits220317_001.push('grape');
+console.log('fruits220317_001.includes(\'grape\'): ' + fruits220317_001.includes('grape'));
+
+fruits220317_001.forEach(function (fruits, index, fruits220317_001){
+    console.log(`fruits: ${fruits} index: ${index} fruits220317_001: ${fruits220317_001}`);
+});
+
+const arrayStudents = new Array( new Students('akadow', 40, true, 99)
+                               , new Students('ishmael', 38, true, 88)
+                               , new Students('ryan', 39, true, 77)
+                               );
+
+//find
+const findStudent = arrayStudents.find((student) => student.age === 38);
+console.log(findStudent);
+
+//reduce
+arrayStudents.reduce((previousValue, currentValue, currentIndex, array) => {
+    console.log(`previousValue.name: ${previousValue.name}, currentValue.name: ${currentValue.name}, currentIndex: ${currentIndex}, array.length: ${array.length}`);
+    return currentValue;//next previousValue
+}).info('final student.');
+
+//https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce
+const totalScore = arrayStudents.reduce((previousValue, currentValue, currentIndex, array) => previousValue + currentValue.score, 0);
+console.log(`totalScore: ${totalScore}`);
+
+//sort (order by age ascending)
+arrayStudents.sort((previous, current) => previous.score - current.score)
+             .forEach((student) => student.info('order by age ascending'));
+
