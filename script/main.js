@@ -149,3 +149,39 @@ console.log(`totalScore: ${totalScore}`);
 arrayStudents.sort((previous, current) => previous.score - current.score)
              .forEach((student) => student.info('order by age ascending'));
 
+//json
+const dog = {
+    name: 'baduki',
+    dog: 'Jindo',
+    color: 'yellow',
+    age: 5,
+    birth : new Date(),
+    bark: () => console.log('bowwow bowwow'),
+}
+
+const stringDog = JSON.stringify(dog, ['name', 'dog']);//string filter
+console.log(`stringDog: ${stringDog}`);
+console.log(`dog: ${dog}`);
+
+const bowwowDog = JSON.stringify(dog, (key, value) => {
+    console.log(`key: ${key}, value: ${value}`);
+    return 'name' === value ? 'bowwow' : value;
+});//replacer
+
+const dogBowwow = JSON.parse(bowwowDog, (key, value) => {
+    let returnValue;
+    switch (key) {
+        case 'name':
+            returnValue = 'bowwow';
+            break;
+        case 'birth':
+            returnValue = new Date(value);
+            break;
+        default:
+            returnValue = value;
+    }
+
+    console.log(`key: ${key}, value: ${value}`);
+    return returnValue;
+});//string replacer
+console.log(`dogBowwow.birth..getDate() ${dogBowwow.birth.getDate()}`);
