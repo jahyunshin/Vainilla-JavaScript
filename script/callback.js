@@ -100,5 +100,25 @@ getHen()
     .then(cook)//.then(egg => cook(egg))
     .then(console.log)//.then(meal => console.log(meal))
 
+//CallBack function
+class Counter {
+    constructor(callback) {
+        this._counter = 0;
+        this._callback = callback;
+    }
 
-
+    increase() {
+        this._counter++;
+        console.log(this._counter);
+        this._callback && this._counter % 5 === 0 && this._callback(this._counter);//_callback > undefined 예방
+    }
+}
+function printSomething(num) {
+    console.log(`printSomething: ${num}`);
+}
+const counter = new Counter(printSomething);
+counter.increase();
+counter.increase();
+counter.increase();
+counter.increase();
+counter.increase();
