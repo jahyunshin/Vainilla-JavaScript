@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue test</title>
+</head>
+<body>
+<script src="https://unpkg.com/vue@3"></script>
+<div id="root">
+    <div v-if="liked&&subscribed">좋아요 &amp; 구독 눌렀습니다.</div>
+    <div v-else-if="liked">좋아요 눌렀습니다.</div>
+    <div v-else-if="subscribed">구독이라도 눌렀습니다.</div>
+    <div v-else>좋아요 & 구독 눌러주세요.</div>
+    <button ref="onClickButton1" :disabled="liked && subscribed" @click="onClickButtonLiked">Like</button>
+    <button ref="onClickButton2" :disabled="disabledButton" @click="onClickButtonSubscribed">Subscribe</button>
+</div>
+<script>
+const app = Vue.createApp({
+    data() {
+        return {
+            liked: false,
+            subscribed: false,
+            subscribed: false,
+            disabledButton: false,
+        }
+    },
+    methods: {
+        onClickButtonLiked() {
+            this.liked = !this.liked;
+            this.disableOnClickButton();
+        },
+        onClickButtonSubscribed() {
+            this.subscribed = !this.subscribed;
+            this.disableOnClickButton();
+        },
+        disableOnClickButton() {
+            this.disabledButton = this.liked && this.subscribed;//recommended
+            return;
+
+            if (this.subscribed && this.subscribed) {
+                this.$refs.onClickButton1.disabled = 'disabled';//not recommended
+                this.$refs.onClickButton2.disabled = 'disabled';//not recommended
+            };
+        },
+    },
+}).mount('#root');
+</script>
+</body>
+</html>
