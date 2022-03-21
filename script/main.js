@@ -185,3 +185,48 @@ const dogBowwow = JSON.parse(bowwowDog, (key, value) => {
     return returnValue;
 });//string replacer
 console.log(`dogBowwow.birth..getDate() ${dogBowwow.birth.getDate()}`);
+
+//Function transfer
+function send1and2(func) {
+    return func(1, 2);
+}
+const addFunction = (first, second) => first + second;
+console.log(`send1and2(addFunction): ${send1and2(addFunction)}`);
+
+const akadow = {name: 'akadow', age:40,};
+if (akadow) {
+    console.log(akadow.name);
+}
+//equal
+akadow && console.log(akadow.name);
+
+//Nullish coalescing operator
+//https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators/Nullish_coalescing_operator
+function getMiscObj(){
+    return {
+        aNullProperty: null,
+        emptyText: "", // this is not falsy
+        someNumber: 42
+    };
+};
+
+const miscObj = getMiscObj();
+
+const newObj = {};
+newObj.propA = miscObj.aNullProperty ?? "default for A";
+newObj.propB = miscObj.emptyText ?? "default for B";
+newObj.propC = miscObj.someNumber ?? 0;
+
+console.log(newObj.propA); // "default for A"
+console.log(newObj.propB); // "" (as the empty string is not null or undefined)
+console.log(newObj.propC); // 42
+
+
+function firstFunc() {
+    return null;
+}
+function secondFunc() {
+    return 'test';
+}
+const result220321 = firstFunc() ?? secondFunc();
+console.log(`result220321: ${result220321}`);
